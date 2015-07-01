@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import pexpect
 import RPi.GPIO as GPIO
@@ -50,5 +50,6 @@ while True:
     User = raw_input("Press<enter> to exit or <spacebar> then <enter> to continue")
     if (User == ""):
         break
+        
 
 GPIO.cleanup()

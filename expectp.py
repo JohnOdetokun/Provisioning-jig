@@ -7,36 +7,36 @@ import time
 import getpass
 import signal
 import select
+
+from button import Button
+from lights import Lights
+from open_ocd import OpenOCD
+from tel_con import TelCon
 #from my_file import MyClass
 
 
-OCDstatus = True
+
 while True:
-    from button import Button
-    bu = Button()
+    with Button() as button:
+    
 
-    while bu.butpush():
-        print("Button pushed")
-        bu.clean()
-    
-    from lights import Lights
-    c = Lights()
-    
-    if(OCDstatus):
-        from open_ocd import OpenOCD
-        a = OpenOCD()
-        OCDstatus = False
+        while button.butpush():
+            print("Button pushed")
+            
+        
+        
+        with Lights() as light:
 
-        from tel_con import TelCon
-        b = TelCon()
-    b.halt()
-    b.erase()
-    b.load()
-    c.success()
-    
+            with OpenOCD() as openOCD:
+            
+                with TelCon() as telcon:
+                    
+                    telcon.halt()
+                    telcon.erase()
+                    telcon.load()
+                    light.success()
     
     User = input("Press<enter> to exit or <spacebar> then <enter> to continue")
     if (User == ""):
         break
 
-c.clean()

@@ -5,7 +5,7 @@ import telnetlib
 from lights import Lights
 
 class TelCon:
-    def __enter__(self):
+    def __init__(self):
         self.c= Lights()
         self.tel = pexpect.spawn("telnet localhost 4444", timeout = 3)
         telcon_start = self.tel.expect(["[\s\S]*\nConnected to localhost[\s\S]*", "[\s\S]unable to[\s\S]"])
@@ -15,6 +15,8 @@ class TelCon:
             self.c.failed()
             sys.exit()
 
+    def __enter__(self):
+        return self
     
     def halt(self):
         self.tel.sendline("reset halt")

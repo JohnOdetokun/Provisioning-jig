@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 class Lights:
-    def __enter__(self):
+    def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(13,GPIO.OUT)
         #success LED
@@ -16,7 +16,8 @@ class Lights:
         GPIO.setup(12,GPIO.OUT)
         GPIO.output(12,0)
 
-        
+    def __enter__(self):
+        return self
 
     
 

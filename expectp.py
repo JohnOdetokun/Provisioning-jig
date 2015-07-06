@@ -18,8 +18,6 @@ from tel_con import TelCon
 
 while True:
     with Button() as button:
-    
-
         while button.butpush():
             print("Button pushed")
             

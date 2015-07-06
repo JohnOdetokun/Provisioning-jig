@@ -5,7 +5,7 @@ import sys
 from lights import Lights
 class OpenOCD:
     
-    def __enter__(self):
+    def __init__(self):
         self.c = Lights()
         try:
             
@@ -30,11 +30,13 @@ class OpenOCD:
             self.c.failed()
             sys.exit()
 
+
+    def __enter__(self):
+        return self
+
     def __exit__(self, type, value, traceback):
-        #close openocd
-        time.sleep(3)
         self.ocd.sendcontrol('c')
-        self.ocd.kill()
+
 
 
         

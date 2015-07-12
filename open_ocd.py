@@ -10,7 +10,9 @@ class OpenOCD:
         try:
             
             self.ocd = pexpect.spawn("openocd -f interface/stlink-v2.cfg -f target/stm32f0x_stlink.cfg", timeout=3)
+            #self.ocd = pexpect.spawn("openocd -f interface/stlink-v2.cfg -f target/stm32f1x_stlink.cfg", timeout=3)
             openocd_start_state = self.ocd.expect(["Open On-Chip Debugger[\s\S]*hardware has 4 breakpoints, 2 watchpoints[\s\S]*","[\s\S]*Error: open failed[\s\S]*","[\s\S]*Error: couldn't bind to socket: Address already in use[\s\S]*"])
+##            openocd_start_state = self.ocd.expect(["Open On-Chip Debugger[\s\S]*hardware has 6 breakpoints, 4 watchpoints[\s\S]*","[\s\S]*Error: open failed[\s\S]*","[\s\S]*Error: couldn't bind to socket: Address already in use[\s\S]*"])
             if openocd_start_state == 0:
                 print("On-Chip debugger opened")
             elif openocd_start_state == 1:

@@ -30,9 +30,11 @@ class TelCon:
 
     def load(self):
         self.tel.sendline("flash write_image erase /home/pi/Downloads/demo.elf")
+        #self.tel.sendline("flash write_image erase /media/TRANSCEND/debug/DFU_ST-Link-V2.hex")
         self.tel.expect("[\s\S]*wrote[\s\S]*from file[\s\S]*")
 
         self.tel.sendline("verify_image /home/pi/Downloads/demo.elf ")
+        #self.tel.sendline("verify_image /media/TRANSCEND/debug/DFU_ST-Link-V2.hex")
         self.tel.expect("[\s\S]*verified[\s\S]*bytes in[\s\S]*")
         print("LOADED!")
 

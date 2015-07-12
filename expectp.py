@@ -18,8 +18,7 @@ from tel_con import TelCon
 
 while True:
     with Button() as button:
-        while button.butpush():
-            print("Button pushed")
+        button.butpush()
             
         
         
@@ -34,7 +33,7 @@ while True:
                     telcon.load()
                     light.success()
     
-    User = input("Press<enter> to exit or <spacebar> then <enter> to continue")
+    User = input("Press <enter> to exit or <spacebar> then <enter> to continue")
     if (User == ""):
         break
 

@@ -32,9 +32,9 @@ class TelCon:
         self.logger.info("erased")
 
     def load(self):
-        self.tel.sendline("flash write_image erase /home/pi/Downloads/demo.elf")
+        self.tel.sendline("flash write_image erase /root/workspace/Provisioning-jig/demo_2015.elf")
         self.tel.expect("wrote[\s\S]*from file")
-        self.tel.sendline("verify_image /home/pi/Downloads/demo.elf")
+        self.tel.sendline("verify_image /root/workspace/Provisioning-jig/demo_2015.elf")
         self.tel.expect("verified[\s\S]*bytes in")
         self.logger.info("Loaded and verified")
 

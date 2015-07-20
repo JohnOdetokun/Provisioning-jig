@@ -15,15 +15,18 @@ if __name__ == '__main__':
             with Lights(logger.getChild('lights')) as light:
                 with Button(logger.getChild('button')) as button:
                     button.wait_for_button_press()
+                    light.busy()
                     try:
                         with OpenOCD(logger.getChild('openocd')) as openOCD:
                             with TelCon(logger.getChild('telcon')) as telcon:
                                 telcon.halt()
                                 telcon.erase()
                                 telcon.load()
+                                light.busyOff()
                                 light.success()
                     except Exception:
                         logging.warn("Provisioning failed")
+                        light.busyOff()
                         light.failed()
         except Exception:
             logging.critical("Lights or Button initialisation failed")

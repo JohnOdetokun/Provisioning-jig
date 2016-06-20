@@ -6,3 +6,7 @@ Raspberry pi is connected to hardware that is connected to the chip. A push butt
 telcon.py - Establishes a telnet connection which is used to erase and write the chip
 open_ocd.py - Establishes a connection with the debugger
 lights.py - Display green if loading was successful and red if loading failed.
+
+To run you can use ./main.py
+
+
